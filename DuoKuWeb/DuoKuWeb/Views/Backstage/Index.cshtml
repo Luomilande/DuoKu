@@ -1,0 +1,117 @@
+﻿@model PagedList.IPagedList<DuoKuWeb.Models.SCdetails>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHT.cshtml";
+}
+
+<section class="container-fluid">
+    <!--左导航栏-->
+    <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li class="active" id="baog"><a href="/Backstage/index">报告</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li id="suc"><a href="/Backstage/add_article">素材</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li id="guanlyh">
+                <a class="dropdown-toggle" id="userMenu" href="/Backstage/article">用户</a>
+            </li>
+        </ul>
+    </aside>
+
+    <!--报告-->
+    <div class="row" id="baogao">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+            <h1 class="page-header">信息总览</h1>
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>素材量</h4>
+                    <span class="text-muted">
+                        @ViewBag.sucais 条
+                    </span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>用户数</h4>
+                    <span class="text-muted">
+                        @ViewBag.rens 个
+                    </span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>友链</h4>
+                    <span class="text-muted">0 条</span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <h4>访问量</h4>
+                    <span class="text-muted">0</span>
+                </div>
+            </div>
+            <h1 class="page-header">状态</h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <tbody>
+                        <tr>
+                            <td>登录者: <span>admin</span>，这是您第 <span>13</span> 次登录</td>
+                        </tr>
+                        <tr>
+                            <td>上次登录时间: 2016-01-08 15:50:28 , 上次登录IP: ::1:55570</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer>
+                <h1 class="page-header">素材排行</h1>
+                <div class="table-responsive">
+                    <div class="col-xs-6 col-sm-6 placeholder" style="border-right:5px solid rgba(66, 139, 202, 0.28) ">
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <td></td>
+                                <td align="center">下载排行</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>素材名</td>
+                                <td>上传者</td>
+                                <td>下载量</td>
+                            </tr>
+                            @foreach (var item in (IEnumerable<DuoKuWeb.Models.HT_Content>)this.ViewBag.sasd)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.DownloadNumber</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 placeholder">
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <td></td>
+                                <td align="center">收藏排行</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>素材名</td>
+                                <td>上传者</td>
+                                <td>收藏量</td>
+                            </tr>
+                            @foreach (var item in (IEnumerable<DuoKuWeb.Models.HT_Content>)this.ViewBag.scph)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.CollectionNumber</td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</section>

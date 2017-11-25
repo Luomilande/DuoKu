@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<DuoKuWeb.Models.SCdetails>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "add_article";
+    Layout = "~/Views/Shared/_LayoutHT.cshtml";
+}
+
+
+<section class="container-fluid">
+    <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li id="baog"><a href="/Backstage/index">报告</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li id="suc" class="active"><a href="/Backstage/add_article">素材</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li id="guanlyh">
+                <a class="dropdown-toggle" id="userMenu" href="/Backstage/article">用户</a>
+            </li>
+        </ul>
+    </aside>
+    <div class="row" id="sucai">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+            <form action="～/Article/checkAll" method="post">
+                <h1 class="page-header">操作</h1>
+                <ol class="breadcrumb">
+                    <li><a onclick=" GoUp()">上传素材</a></li>
+                </ol>
+                <h1 class="page-header">管理 <span class="badge">@ViewBag.sucais</span></h1>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                
+                                <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">素材ID</span></th>
+                                <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
+                                <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">路径</span></th>
+                                <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span class="visible-lg">内容</span></th>
+                                <th class="hidden-sm"><span class="glyphicon glyphicon-comment"></span> <span class="visible-lg">素材状态</span></th>
+                                <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">日期</span></th>
+                                <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+
+                            @foreach (var item in (IEnumerable<DuoKuWeb.Models.SCdetails>)this.ViewBag.scdetails)
+                            {
+                                <tr>
+                                    
+                                    <td>@item.ID</td>
+                                    <td class="article-title">@item.Title</td>
+                                    <td>@item.FileURL</td>
+                                    <td class="hidden-sm">@item.Details</td>
+                                    <td class="hidden-sm" id="scstate">@item.SCState</td>
+                                    <td>@item.UploadTime</td>
+                                    <td><a href="#" onclick="Xiugai(@item.ID)">修改状态</a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="message_footer">
+                    <nav>
+                        
+                        <div style="margin:10px auto; text-align:center;border-top: 5px solid #ddd;">
+                            <hr />
+                            每页 @Model.PageSize 个素材，共 @Model.PageCount 页，当前第 @Model.PageNumber 页
+                            @Html.PagedListPager(Model, page => Url.Action("add_article", new { page }))
+                        </div>
+                    </nav>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function Xiugai(id)
+        {
+            RequestByPostMethod("/Backstage/Xiugai", id, msc)
+
+        }
+        function msc(data)
+        {
+            if (data.success)
+            {
+                alert(data.ExecuteResult);
+                location.reload();
+            }
+
+        }
+        function GoUp() {
+            location.href = "/Home/Upimg";
+        }
+
+
+    </script>
+</section>
+

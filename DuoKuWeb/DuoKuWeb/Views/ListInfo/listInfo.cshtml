@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "listInfo";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DuoKuWeb.Models.SCdetails>
+<link rel="stylesheet" href="~/Content/css/foundation.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="~/Content/css/set1.css" />
+<link href="/Content/PagedList.css" rel="stylesheet" />
+
+<div class="col-md-12">
+    <h1>精品推荐</h1>
+    <hr />
+    <main class="main-wrapper" id="container">
+
+        <div class="wrapper">
+
+            <div class="commet">
+
+                <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
+                    @foreach (DuoKuWeb.Models.SCdetails ds in ViewBag.datap)
+            {
+                        <li class="masonry-item grid">
+                            <figure class="effect-sarah" onclick="Goinfo(@ds.ID)">
+                                <img src="@ds.PictureURL" alt="" />
+                                <figcaption>
+                                    <h2>@ds.Title</h2>
+                                    <p>下载量：@ds.DownloadNumber &nbsp 浏览量：@ds.SeeNumber &nbsp 收藏量：@ds.CollectionNumber  </p>
+                                   
+                                </figcaption>
+                            </figure>
+                        </li>
+                    }
+                </ul>
+
+
+            </div>
+
+            <div style="margin:10px auto; text-align:center;">
+                每页 @Model.PageSize 个素材，共 @Model.PageCount 页，当前第 @Model.PageNumber 页
+                @Html.PagedListPager(Model, page => Url.Action("listInfo", new { page }), new PagedListRenderOptions
+           {
+               DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+               DisplayLinkToNextPage = PagedListDisplayMode.Always,
+               DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+               LinkToPreviousPageFormat = "上一页",
+               LinkToNextPageFormat = "下一页"
+           })
+            </div>
+        </div>
+    </main>
+</div>
+<script src="~/Content/js/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+<script src="~/Content/js/main.js" type="text/javascript"></script>
+<script src="~/Content/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+<script src="~/Content/js/masonry.pkgd.min.js" type="text/javascript"></script>
+<script>
+    function Goinfo(id) {
+        location.href = "/Detailed/Detailedinfo/" + id + "";
+    }
+</script>
+
+
+

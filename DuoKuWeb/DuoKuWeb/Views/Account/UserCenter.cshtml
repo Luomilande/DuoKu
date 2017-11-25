@@ -1,0 +1,84 @@
+﻿@model DuoKuWeb.Models.SCdetailsViewModels
+@{
+    ViewBag.Title = "UserCenter";
+}
+<link href="~/Content/css/foundation.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/set1.css" rel="stylesheet" type="text/css" />
+
+<div id="installation" class="row featurette">
+    <div class="col-md-12">
+        <div class="col-md-8">
+
+            <div class="col-md-12">
+                <h2 class="featurette-heading" id="h1_username">
+                    @Session["UserName"].ToString().<br>
+                    <span class="text-muted">Welcome.</span>
+                </h2>
+                <p class="lead">积分：@Session["UserIntegral"]</p>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-12">
+                <h1>上传的素材</h1>
+                <hr>
+                <div class="row">
+                    <main class="main-wrapper" id="container">
+                        <div class="wrapper">
+                            <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
+                                @foreach (DuoKuWeb.Models.SCdetails sc in ViewBag.DataUp)
+                                {
+                                    <li class="masonry-item grid">
+                                        <figure class="effect-sarah" onclick="Goinfo(@sc.ID)">
+                                            <img src="@sc.PictureURL" alt="" />
+                                            <figcaption>
+                                                <h2>标题： <span>@sc.Title</span></h2>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h1>收藏</h1>
+            <hr>
+            <main class="main-wrapper" id="container">
+                <div class="wrapper">
+                    <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
+                        <!-- Should have markups of the list of pins here -->
+                        @foreach (DuoKuWeb.Models.SCdetails sc in ViewBag.DataXZ)
+                        {
+                            <li class="masonry-item grid">
+                                <figure class="effect-sarah" onclick="Goinfo(@sc.ID)">
+                                    <img src="@sc.PictureURL" alt="" />
+                                    <figcaption>
+                                        <h2>@sc.Title</h2>
+                                    </figcaption>
+                                </figure>
+                                <button type="button" class="btn btn-info" onclick="Goinfo(@sc.ID)">标题： @sc.Title</button>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </main>
+
+        </div>
+
+        </div>
+</div>
+
+<script src="~/Content/js/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/main.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/masonry.pkgd.min.js" type="text/javascript"></script>
+<script>
+    function Goinfo(id) {
+        location.href = "/Detailed/Detailedinfo/" + id + "";
+    }
+</script>
+<!-- START THE FOOTER -->

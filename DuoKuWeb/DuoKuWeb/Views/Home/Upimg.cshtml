@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Upimg";
+}
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div class="col-md-12">
+
+            <div class="col-md-6 ">
+                <img id="previewImage" class="img-rounded" src="~/Content/images/yulan.jpg" style="height: 500px;">
+            </div>
+            <div class="col-md-6">
+                <form>
+
+                    <div class="form-group">
+                        <label for="Title">标题</label>
+                        <input type="text" class="form-control" id="txt_Title" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="Details">内容</label>
+                        <textarea class="form-control" id="txt_Details" placeholder="内容" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">选择上传文件</label>
+                        <input type="file" id="exampleInputFile"  accept="image/gif,image/jpeg,image/png">
+                        @*<label for="exampleInputFile">选择上传压缩包</label>
+                         <input type="file" id="picAjax">*@
+                       
+                    </div>
+                    @if (Session["UserName"] != null)
+                    {
+                        <button class="btn btn-default" onclick="myFunction()">上 传</button>
+                    }
+                    else
+                    {
+                        <p class="text-danger">ps:请先登陆才能提交</p>
+                        <button class="btn btn-default disabled" onclick="myFunction()">上 传</button>
+                    }
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        document.getElementById('exampleInputFile').onchange = function (evt) {
+            // 如果浏览器不支持FileReader，则不处理
+            if (!window.FileReader) return;
+            var files = evt.target.files;
+            for (var i = 0, f; f = files[i]; i++) {
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+
+                reader.onload = (function (theFile) {
+                    return function (e) {
+                        // img 元素
+                        document.getElementById('previewImage').src = e.target.result;
+                    };
+                })(f);
+                reader.readAsDataURL(f);
+            }
+        }
+    }
+
+</script>
+<script type="text/javascript">
+    function myFunction() {
+        var txt_Title = $("#txt_Title").val();
+        if (txt_Title == "")
+        {
+            alert("标题不能为空！");
+        }
+        else
+        {
+            var txt_Details = $("#txt_Details").val();
+            var imgsrc = $("#previewImage")[0].src;
+            var obj = new Object();
+            obj.Title = txt_Title;
+            obj.Details = txt_Details;
+            obj.PictureURL = imgsrc;
+            RequestByPostMethod("/Home/up", obj, msgBox1);
+        }
+
+    }
+    function msgBox1(data) {
+        alert( data.ExecuteResult);
+    }
+</script>

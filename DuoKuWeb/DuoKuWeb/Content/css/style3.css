@@ -1,0 +1,51 @@
+          *{margin: 0;padding: 0;}
+            body{background:rgba(235,235,235,1);}
+            .quanju{width:1080px; height: 100%; background:rgba(235,235,235,1)}
+            .top{width: 100%; height: 150px;/* background: yellow;*/}
+           /* 导航*/
+            .top .con{width:1080px;height: 150px;margin: 0 auto;/*background: blue;*/}
+            
+            .top .con .alast{width: 1080px;height: 35px;margin: 0 auto; background: rgba(255,255,255,1);}
+            .top .con .alast ul li{width:150px; height:35px;
+                            float:left ; list-style: none; line-height:35px;display:inline-block;
+                            text-align: center;font-size: 14px;font-family: 微软黑体;color: brown;}
+            a{text-decoration: none;color:brown;}
+            /*导航*/
+            
+          /*  图片*/
+            .top .con .tupian{margin: 0 auto;height:115px; width: 100%;/*background: green;*/ }
+            .top .con .tupian .dhtu{width: 1080px;height: 80px;margin:15px 0 0 0 ;background-image: url(images/J11V%7B%257BL%60RUEZ%5B6AO32MBL.png);}
+         /*  图片*/
+            /*详情页面*/
+           .quanju .centerOne{width: 1080px;/* background:blue*/ height: 500px; margin: 0 auto;}
+           .quanju .centerOnes{width: 1080px;/* background:blue*/ margin: 0 auto;}
+           .quanju .centerOne .centerOneleft{width:600px;background:rgba(255,255,255,1); padding: 10px 10px 10px 10px;display:inline-block;}
+           .quanju .centerOne .centerOneleft .centerOneleftfoot{width: 100%; background:rgba(235,235,235,1);}
+           .quanju .centerOne .centerOneleft .centerOneleftfoot span{font-size: 9px}
+           .quanju .centerOne .centerOneleft .centerOneleftfoot .tishi{background:rgba(255,255,255,1); display: block;width: 100%;margin: 10px 0 0 0}
+           .quanju .centerOne .centerOneright{width:460px;height: 644px;background: red;float:right;/*display:inline-block;*/}
+         /*  .quanju .centerOne #word{display:inline-block;background: red; float: right; width: 400;height: 500px;}
+            */
+            .quanju .centerOne  .centerOneright .wort_1{background:rgba(255,255,255,1);width: 100%;margin: 0 auto;height: 50px;line-height: 50px; font-size: 25px;}
+            .quanju .centerOne  .centerOneright .wort_2{background:rgba(165,0,0,1);width: 100%;margin: 0 auto;height: 60px;line-height: 60px; font-size: 25px; padding: 0 0 5px 0;color: #fff;font-size: 38px;}
+            .quanju .centerOne  .centerOneright .wort_2 .wort_2sp{font-size: 15px;}
+            .quanju .centerOne  .centerOneright .wort_2 .wort_2sp a{display: block;height: 60px;width: 60px; margin: 0 0 20px 0;}
+            .quanju .centerOne  .centerOneright .wort_3{background:rgba(255,255,255,1);width: 100%;margin: 0 auto;height: 35px;line-height: 35px; font-size: 18px;}
+            .quanju .centerOne  .centerOneright .wort_4{background:rgba(255,255,255,1);width: 100%;margin: 0 auto;height: 20px;line-height: 20px; font-size: 10px; color:darkgrey;}
+            .quanju .centerOne  .centerOneright .wort_5{background:rgba(255,255,255,1);width: 100%;margin: 0 auto;height: 35px;line-height: 35px; font-size: 10px; color:darkgrey;}
+            .quanju .centerOne  .centerOneright .wort_6{background:rgba(255,255,255,1);width: 100%;margin: 0 auto;height: 80px;line-height: 80px; font-size: 10px; color:darkgrey; }
+            .quanju .centerOne  .centerOneright .wort_7{background:rgba(255,255,255,1);width: 100%;margin: 0 auto;height: 199px;line-height: 80px; font-size: 10px; color:darkgrey; }
+            
+            .quanju .centerOne  .centerOneright .wort_7 ul li{width: 50px;height: 20px;
+                            float:left ; list-style: none; line-height: 20px;
+                text-align: center;font-size: 9px;font-family: 微软黑体;background: rgba(225,225,225,0.8);margin: 5px}
+            
+            /*详情页面*/
+            .quanju .foot{
+                width: 100%;/*background: green*/ height: 100%;
+                background:rgba(255,255,255,1); 
+            }
+            .quanju .foot_list{
+                width: 23%;/*background: blue*/height:200px;display:inline-block;margin: 8px 0px 8px 13px;
+                overflow:hidden;
+            }

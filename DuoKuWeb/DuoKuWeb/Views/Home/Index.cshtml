@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model DuoKuWeb.Models.SCdetails
+        <!-- START THE CONTENT -->
+<div id='contents'>
+
+
+    <!-- START THE FEATURES -->
+    <div id="features" class="row featurette container marketing">
+        
+        <center>
+            <h4 style='margin-bottom:0px;margin-top:20px;'>by <b>斯塔克军火公司</b></h4>
+            <h5 style='margin-top:5px;'>
+                <mute>v2.0.0 BETA</mute>
+
+            </h5>
+        </center>
+        <!-- Three columns of text -->
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="~/Content/images/simple.png">
+                <h2>使用打包简单</h2>
+                <p><b>下载即用</b> 多库网在满足设计师工作的同时，也不断为大家打造各类有趣的活动和互动，让多库网和设计师不再有距离， 努力把多库网打造成一个有情谊的网站， 将来，让设计师的生活因为有了多库网而更加美好。  </p>
+                <p><a class="btn btn-default" href="#installation">跳 转 &raquo;</a></p>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img src="~/Content/images/onepager.png">
+                <h2>素材内容详细</h2>
+                <p>一个真正的创意，拥有它自己的力量与生命。用户的每一个批判或鼓励，都延续了我们创意的生命力。有热爱，自有收获；有理想，自有理想国。</p>
+                <p>
+                    <a class="btn btn-default" href="#one-pager">跳 转 &raquo;</a>
+                </p>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img src="~/Content/images/opensource.png">
+                <h2>层次丰富</h2>
+                <p>能做一个在设计圈子里有影响力的网站产品，是一件很有成就感、 很酷的事情，希望多库发展成让更多中国设计师有成就感的网站产 品，与多库网团队小伙伴一起朝着一个目标努力，这个过程会让我 一生都值得骄傲！</p>
+                <p><a class="btn btn-default" href="#extras">跳 转 &raquo;</a></p>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- END FEATURES -->
+    <!-- START THE UPDATES -->
+    <div id="updates" class="row featurette">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <h2 class="featurette-heading">
+                更新.<br>
+                <span class="text-muted">Updates.</span>
+            </h2>
+            <p class="lead">“做设计，不抠图，解决设计师们的找图、抠图痛苦是素材网收获到的最大快乐，素材网专注服务千万设计师，提升工作效率的理念一直在持续....你get到了嘛！” </p>
+            <p class="col-lg-offset-1"><a class="btn btn-large btn-primary" href="/ListInfo/listInfo">更 多</a><br><br></p>
+            <div class="row" id="Newimg">
+
+                @foreach (DuoKuWeb.Models.SCdetails item in ViewBag.newsc1)
+                {
+                    <div class="col-sm-5 col-md-3">
+                        <div class="thumbnail">
+                            <img src="@item.PictureURL" alt="...">
+                            <div class="caption">
+                                <h3>@item.Title</h3>
+                                <p>下载量：@item.DownloadNumber &nbsp  收藏量：@item.CollectionNumber</p>
+                                <p><div class="btn btn-primary" role="button" onclick="Goinfo(@item.ID)">详 细</div> <div  class="btn btn-default" role="button" onclick="SCFunction(@item.ID)">收 藏</div></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- END UPDATES -->
+    <!-- START THE INSTALLATION -->
+    <div id="installation" class="row featurette">
+        <div class="col-md-8">
+            <h2 class="featurette-heading">背景图库推荐.<br> <span class="text-muted">The background image.</span></h2>
+            <p class="lead">“多库网在满足设计师工作的同时，也不断为大家打造各类有趣的活动和互动，让多库网和设计师不再有距离， 努力把多库网打造成一个有情谊的网站， 将来，让设计师的生活因为有了多库网而更加美好。” </p>
+            <p class="col-lg-offset-1"><a class="btn btn-large btn-primary" href="/ListInfo/listInfo">更 多</a><br><br></p>
+            <div class="row">
+                @foreach (DuoKuWeb.Models.SCdetails item in ViewBag.newsc2)
+                {
+                    <div class="col-sm-5 col-md-3">
+                        <div class="thumbnail">
+                            <img src="@item.PictureURL" alt="...">
+                            <div class="caption">
+                                <h3>@item.Title</h3>
+                                <p>下载量：@item.DownloadNumber &nbsp  收藏量：@item.CollectionNumber</p>
+                                <p><div class="btn btn-primary" role="button" onclick="Goinfo(@item.ID)">详 细</div> <div class="btn btn-default" role="button" onclick="SCFunction(@item.ID)">收 藏</div></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <!-- END INSTALLATION -->
+    <!-- START THE ONE-PAGER -->
+    <div id="one-pager" class="row featurette">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+            <h2 class="featurette-heading">精品模板推荐. <span class="text-muted"><br>Boutique template.</span></h2>
+            <p class="lead">“一个真正的创意，拥有它自己的力量与生命。用户的每一个批判或鼓励，都延续了我们创意的生命力。有热爱，自有收获；有理想，自有理想国。”</p>
+            <p class="col-lg-offset-1"><a class="btn btn-large btn-primary" href="/ListInfo/listInfo">更 多</a><br><br></p>
+            <div class="row">
+
+                @foreach (DuoKuWeb.Models.SCdetails item in ViewBag.newsc3)
+                {
+                    <div class="col-sm-5 col-md-3">
+                        <div class="thumbnail">
+                            <img src="@item.PictureURL" alt="...">
+                            <div class="caption">
+                                <h3>@item.Title</h3>
+                                <p>下载量：@item.DownloadNumber &nbsp  收藏量：@item.CollectionNumber</p>
+                                <p><div class="btn btn-primary" role="button" onclick="Goinfo(@item.ID)">详 细</div> <div class="btn btn-default" role="button" onclick="SCFunction(@item.ID)">收 藏</div></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- END ONE-PAGER -->
+    <!-- START THE EXTRAS -->
+    <div id="extras" class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">免抠PNG元素推荐. <br><span class="text-muted">PNG element recommended.</span></h2>
+            <p class="lead">
+                “能做一个在设计圈子里有影响力的网站产品，是一件很有成就感、 很酷的事情，希望多库发展成让更多中国设计师有成就感的网站产 品，与多库网团队小伙伴一起朝着一个目标努力，这个过程会让我 一生都值得骄傲！”
+            </p>
+            <p class="col-lg-offset-1"><a class="btn btn-large btn-primary" href="/ListInfo/listInfo">更 多</a><br><br></p>
+            <div class="row">
+                @foreach (DuoKuWeb.Models.SCdetails item in ViewBag.newsc4)
+                {
+                    <div class="col-sm-5 col-md-3">
+                        <div class="thumbnail">
+                            <img src="@item.PictureURL" alt="...">
+                            <div class="caption">
+                                <h3>@item.Title</h3>
+                                <p>下载量：@item.DownloadNumber &nbsp  收藏量：@item.CollectionNumber</p>
+                                <p><div class="btn btn-primary" role="button" onclick="Goinfo(@item.ID)">详 细</div> <div class="btn btn-default" role="button" onclick="SCFunction(@item.ID)">收 藏</div></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>
+    <!-- END EXTRAS -->
+    <!-- START THE WORDPRESS -->
+    <!-- END WORDPRESS -->
+</div>
+<!-- END CONTENT -->
+<script>
+    function Goinfo(id) {
+        location.href = "/Detailed/Detailedinfo/"+id+"";
+    }
+</script>
+
+<script type="text/javascript">
+    function SCFunction(id) {
+
+           var obj = new Object();
+            obj.ID = id;
+
+            RequestByPostMethod("/Home/SC", obj, msgBox1);
+
+        }
+        function msgBox1(data) {
+            alert(data.ExecuteResult);
+        }
+</script>
+

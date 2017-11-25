@@ -1,0 +1,267 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>*@
+    <title>多库素材网</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css/style1.css" rel="stylesheet" />
+    <link href="~/Content/css/stickup.css" rel=" stylesheet" />
+    <script src="~/Content/js/jquery.js"></script>
+</head>
+<body>
+    <!-- START THE COVER -->
+    <div id="home" class="carousel">
+
+        <div class="carousel-inner" style="">
+            <div class="item active">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>素材网</h1>
+                        <h3>致力于为设计师提供最优质的素材</h3>
+                        <p>数量多1500万+内容（元素、背景、模板） 多维度满足作图需求精品多每天快速更新 专业审核把控质量宽广度保证全面精品 无限下载免费下载可升级为一年无限张数下载 翻倍提升工作效率优质服务专业客服在线 获5000+家知名大型企业认可信赖</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END COVER -->
+        <!-- 导航栏 -->
+        <div class="navbar-wrapper" id="daohang">
+
+            <nav class="navbar navbar-default navbar-fixed-top" id="daohang">
+
+                <div class="container-fluid">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Home</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <ul class="nav navbar-nav">
+
+                            <li><a href="/Home/Index">首页</a></li>
+                            <li><a href="/ListInfo/listInfo">设计稿</a></li>
+                            <li><a href="/ListInfo/listInfo">摄影图</a></li>
+                            <li>
+                                <a href="#"></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="/ListInfo/listInfo" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">免费素材 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/ListInfo/listInfo">免费矢量图</a></li>
+                                    <li><a href="/ListInfo/listInfo">免费PSD素材</a></li>
+                                    <li><a href="/ListInfo/listInfo">免费图片素材</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/ListInfo/listInfo">找人设计</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/ListInfo/listInfo">设计论坛</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default" >搜索</button>
+                            <button type="button" class="btn btn-default" onclick="GoUp()">上传</button>
+
+
+
+                        </form>
+                     @if (Session["UserName"] != null)
+                     {
+                         var role = Session["Role"].ToString();
+                         switch (role.TrimEnd())
+                         {
+                             case "user":
+                                <div class="log_Signin">
+                                    @*<button type="button" class="btn btn-info" onclick="GoUser(@Session["UserId"].ToString())">欢迎，@Session["UserName"].ToString()</button>
+                                    <span>退出</span>*@
+                                    <div class="btn-group">
+                                        <button class="btn btn-info" type="button"  id="btn_user" onclick="GoUser(@Session["UserId"].ToString())">欢迎，@Session["UserName"].ToString()</button>
+                                        <button class="btn btn-info dropdown-toggle" aria-expanded="false" aria-haspopup="true" type="button" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><div onclick=" ExitUser()" style=" margin-left: 20px;" >退出</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                 break;
+                             case "admin":
+                                <div class="log_Signin">
+                                    @*<button type="button" class="btn btn-info" onclick="GoBackstage()">后  台</button>
+                                    <span>退出</span>*@
+                                    <div class="btn-group">
+                                        <button class="btn btn-info" type="button" id="btn_user"  onclick="GoBackstage()">后 台</button>
+                                        <button class="btn btn-info dropdown-toggle" aria-expanded="false" aria-haspopup="true" type="button" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><div onclick=" ExitUser()" style=" margin-left: 20px;">退出</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                 break;
+                         }
+                     }
+                     else
+                     {
+                            <div class="log_Signin">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                    登陆
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="2" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">登陆</h4>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="UserID" placeholder="UserID">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="password" class="form-control" id="Password" placeholder="Password">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                                                <button type="button" class="btn btn-default" onclick="GoRegister()">注册</button>
+                                                <button type="submit" class="btn btn-default" onclick="SigninFunction()">登陆</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- /.navbar-collapse -->
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </nav>
+        </div>
+
+        @RenderBody()
+        <!-- START THE FOOTER -->
+        <footer id="contact" class="row featurette">
+            <div class="row">
+                <br>
+                <div class="text-center col-sm-12 col-lg-12">
+
+                    <h2 class="featurette-heading">与我们保持联系。<br><span class='text-muted'>随时跟进。</span></h2>
+                    <br><br>
+                </div>
+                <div class="col-12 col-lg-12">
+                    <div class="col-lg-offset-2 col-lg-2 text-center">
+                        <a href="http://github.com/LiranCohen/stickUp"><img src="~/Content/images/icons/Github.png"></a>
+                        <h3>GitHub</h3>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        <a href="http://www.twitter.com/itsLiran"><img src="~/Content/images/icons/Twitter.png"></a>
+                        <h3>Twitter</h3>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        <a href="http://plus.google.com/+LiranCohen"><img src="~/Content/images/icons/Google.png" /></a>
+                        <h3>Google+</h3>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        <a target="_blank" href="mailto:lirancohen@me.com?subject=stickUp%20Contact%20from%20Website"><img src="~/Content/images/icons/Mail.png"></a>
+                        <h3>E-Mail</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <span class="text-center"><h3 class="featurette-heading">DuoKu素材网</h3><h4>欢迎您的使用</h4></span><br>
+                <div class="text-center col-sm-12 col-lg-12">
+                    <p>© 2017 斯塔克军火公司 | Make by <a href="http://www.getbootstrap.com">Bootstrap Support</a></p>
+                    <header class="bs-docs-nav navbar navbar-static-top" id="top"></header>
+                    <a href="#home" class="back-to-top"> Back to top </a>
+                </div>
+            </div>
+        </footer>
+        <!-- END FOOTER -->
+    </div>
+    <p id="back-to-top"><a href="#top"><span></span>返回顶部</a></p>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Content/js/cation.js"></script>
+    <script src="~/Content/js/ajaxfunc.js"></script>
+
+
+    <script type="text/javascript">
+        function SigninFunction() {
+                                var txt_UserID = $("#UserID").val();
+                                var txt_Password = $("#Password").val();
+
+                                var obj = new Object();
+                                obj.UserName = txt_UserID;
+                                obj.UserPassword = txt_Password;
+
+                                RequestByPostMethod("/Account/Login", obj, msgBox1);
+
+                            }
+                            function msgBox1(data) {
+                                alert( data.ExecuteResult);
+                                location.reload();
+                            }
+    </script>
+    <script>
+                            function GoRegister() {
+                                location.href = "/Account/Register";
+                            }
+                            function GoBackstage() {
+                                location.href = "/Backstage/Index";
+                            }
+                            function GoUp() {
+                                location.href = "/Home/Upimg";
+                            }
+                            function ExitUser() {
+                                location.href = "/Account/ExitUser";
+                            }
+                            function GoUser(id) {
+                                location.href = "/Account/UserCenter/"+id+"";
+                                }
+    </script>
+
+</body>
+</html>
